@@ -5,6 +5,7 @@ class CreateBills < ActiveRecord::Migration[6.0]
       t.integer :amount
       t.string :category
       t.string :date
+      t.integer :user_id
 
       t.timestamps
     end
