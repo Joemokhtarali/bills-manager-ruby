@@ -15,7 +15,7 @@ class BillsController < ApplicationController
         if bill.save
             render json: bill 
         else 
-            render json: {bill.errors.full_messages}
+            render json: {errors: bill.errors.full_messages}
         end 
 
     end 

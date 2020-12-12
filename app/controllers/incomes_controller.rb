@@ -14,7 +14,7 @@ class IncomesController < ApplicationController
         if income.save 
             render json: income 
         else 
-            render json: {income.errors.full_messages}
+            render json: {errors: income.errors.full_messages}
         end 
     end 
 
