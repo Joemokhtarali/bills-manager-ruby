@@ -6,7 +6,7 @@ class BillsController < ApplicationController
 
     def show 
         bill = Bill.find(params[:id])
-        render json: bill 
+        render json: bill, except: [:created_at, :updated_at]
     end 
 
 

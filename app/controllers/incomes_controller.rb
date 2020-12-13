@@ -6,7 +6,7 @@ class IncomesController < ApplicationController
 
     def show 
         income = Income.find(params[:id])
-        render json: income 
+        render json: income, except: [:created_at, :updated_at]
     end 
 
     def create 
