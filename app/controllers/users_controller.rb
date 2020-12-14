@@ -4,10 +4,30 @@ class UsersController < ApplicationController
         render json: users 
     end
 
+    def get_total_income 
+        total = 0 
+        user = User.find(params[:id])
+        incomes = Income.select{|income| income.user_id == user.id}
+        incomes.map{|income| total += income.amount}
+        total
+    end
+
+    def get_total_bills 
+        total = 0 
+        user = User.find(params[:id])
+        bills = Bill.select{|bill| bill.user_id == user.id}
+        bills.map{|bill| total += bill.amount}
+        total
+    end
+
     def show 
         user = User.find(params[:id])
-        # bills = Bill.all.filter(bill.user_id == user.id)
-        render json: user, except: [:created_at, :updated_at]
+        bills = Bill.select{|bill| bill.user_id == user.id}
+        incomes = Income.select{|income| income.user_id == user.id}
+        total_income = get_total_income
+        total_bills = get_total_bills
+        balance = total_income - total_bills
+        render json: {id: user.id, user_name: user.user_name, bills: bills, incomes: incomes, total_income: total_income, total_bills: total_bills, balance: balance}
     end 
 
     def create 
