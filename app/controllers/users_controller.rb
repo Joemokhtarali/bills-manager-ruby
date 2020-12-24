@@ -30,9 +30,11 @@ class UsersController < ApplicationController
         render json: {id: user.id, user_name: user.user_name, bills: bills, incomes: incomes, total_income: total_income, total_bills: total_bills, balance: balance}
     end 
 
-    def create 
-        user = User.new(user_params)
+    def create  
+        
+        user = User.new(user_name: params[:user_name], password: params[:password])
         if user.save 
+            # byebug
             render json: user
         else 
             render json: {errors: user.errors.full_messages}
