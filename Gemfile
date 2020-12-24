@@ -17,6 +17,8 @@ gem 'puma', '~> 4.1'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'nokogiri', '1.10.8'
+gem 'rack-cors', :require => 'rack/cors'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
