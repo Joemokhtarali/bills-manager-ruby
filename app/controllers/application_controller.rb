@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+
     def get_auth_header
         request.headers['Authorization']
     end 
@@ -6,4 +7,5 @@ class ApplicationController < ActionController::API
     def session_user
         User.find_by(id: get_auth_header)
     end
+     
 end
